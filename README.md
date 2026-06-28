@@ -1,6 +1,6 @@
 # Fake News Detection System
 
-Starter project for a Streamlit-based fake news detection app.
+Streamlit app for detecting fake news using a trained SVM model and a TF-IDF vectorizer.
 
 ## Project Structure
 
@@ -8,6 +8,10 @@ Starter project for a Streamlit-based fake news detection app.
 Fake-News-Detection-System/
 |-- streamlit_app.py
 |-- requirements.txt
+|-- runtime.txt
+|-- COMMANDES_STREAMLIT.md
+|-- fake_news_modelsvm.pkl
+|-- tfidf_vectorizer.pkl
 |-- .gitignore
 |-- src/
 |   `-- fake_news_detection/
@@ -22,6 +26,12 @@ Fake-News-Detection-System/
 ## Quick Start
 
 1. Create or activate a virtual environment.
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\activate
+```
+
 2. Install dependencies:
 
 ```powershell
@@ -34,17 +44,38 @@ pip install -r requirements.txt
 streamlit run streamlit_app.py
 ```
 
+If `streamlit` is not recognized:
+
+```powershell
+python -m streamlit run streamlit_app.py
+```
+
 ## Model Files
 
-The app looks for these files in `artifacts/` first:
+The app needs these files:
 
 - `fake_news_modelsvm.pkl`
 - `tfidf_vectorizer.pkl`
 
-If they are not found there, it also checks the parent workspace so you can reuse existing local files during setup.
+Place them in the project root, next to `streamlit_app.py`.
+
+## Streamlit Cloud Deployment
+
+This project includes:
+
+- `requirements.txt` for Python dependencies
+- `runtime.txt` to use Python 3.11 on Streamlit Cloud
+
+After editing files, push updates to GitHub:
+
+```bash
+git status
+git add -A
+git commit -m "Update Streamlit deployment files"
+git push origin main
+```
 
 ## Next Steps
 
-- Add your trained model files to `artifacts/`
 - Add datasets to `data/`
 - Extend `src/fake_news_detection/predict.py` with preprocessing or retraining helpers

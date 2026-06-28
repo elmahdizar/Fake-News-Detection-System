@@ -29,3 +29,35 @@ Puis ouvrir l'adresse affichee dans le terminal, souvent :
 ```text
 http://localhost:8501
 ```
+
+## Mettre a jour GitHub
+
+Verifier les fichiers modifies :
+
+```bash
+git status
+```
+
+Ajouter tous les changements :
+
+```bash
+git add -A
+```
+
+Creer un commit :
+
+```bash
+git commit -m "Update Streamlit deployment files"
+```
+
+Envoyer vers GitHub :
+
+```bash
+git push origin main
+```
+
+Apres le push, ouvrir Streamlit Cloud puis cliquer sur :
+
+```text
+Manage App > Reboot app
+```

@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-streamlit==1.56.0
-joblib==1.5.3
-scikit-learn==1.8.0
-numpy==2.4.4
-=======
 streamlit>=1.39
-joblib>=1.4
-scikit-learn>=1.5
-numpy>=1.26
 pandas>=2.2
->>>>>>> 25412cc (Initial starter project)
+numpy>=1.26
+scikit-learn>=1.5
+joblib>=1.4

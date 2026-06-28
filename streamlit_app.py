@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import streamlit as st
 import joblib
 import requests
@@ -287,57 +286,3 @@ if st.button("🔍 Analyser", use_container_width=True):
             st.error("Le modèle n'est pas entraîné.")
         except Exception as e:
             st.error(f"Erreur : {e}")
-=======
-from pathlib import Path
-
-import streamlit as st
-
-from src.fake_news_detection.predict import load_artifacts, predict_news
-
-
-st.set_page_config(page_title="Detection des fake news", page_icon="N", layout="centered")
-
-st.title("Systeme de detection des fake news")
-st.write("Collez un article de presse ou un titre pour le classer comme vrai ou faux.")
-
-
-def artifact_candidates() -> list[Path]:
-    project_root = Path(__file__).resolve().parent
-    parent_root = project_root.parent
-    return [
-        project_root / "artifacts",
-        parent_root,
-    ]
-
-
-@st.cache_resource
-def get_pipeline():
-    return load_artifacts(artifact_candidates())
-
-
-text = st.text_area(
-    "Texte de l'actualite",
-    placeholder="Saisissez un titre ou le contenu d'un article ici...",
-    height=220,
-)
-
-if st.button("Verifier l'information", type="primary"):
-    if not text.strip():
-        st.warning("Veuillez saisir un texte avant de lancer la prediction.")
-    else:
-        try:
-            model, vectorizer, source_dir = get_pipeline()
-            label = predict_news(text, model, vectorizer)
-
-            st.caption(f"Artefacts du modele charges depuis : {source_dir}")
-            if label == 1:
-                st.success("Prediction : information vraie")
-            else:
-                st.error("Prediction : fausse information")
-        except FileNotFoundError as exc:
-            st.error(str(exc))
-            st.info(
-                "Ajoutez `fake_news_modelsvm.pkl` et `tfidf_vectorizer.pkl` dans le "
-                "dossier `artifacts/`, ou laissez-les dans le dossier parent."
-            )
->>>>>>> 25412cc (Initial starter project)
